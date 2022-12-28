@@ -1,0 +1,39 @@
+<div class="col-6 mx-auto">
+    <h1 class="text-center text-muted">Create a new FaceSnap</h1>
+    <form [formGroup]="snapFaceForm">
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre</label>
+            <input formControlName="title" type="text" class="form-control" id="title" aria-describedby="titleHelp">
+            <div id="titleHelp" class="form-text">Veillez saisir un titre pour le Snap</div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea formControlName="description" class="form-control" id="description" rows="3" ></textarea>
+            <div id="titleHelp" class="form-text">La description doit faire au moins 10 caracteres</div>
+        </div>
+        <div class="mb-3">
+            <label for="imageUrl" class="form-label">ImageUrl</label>
+            <input formControlName="imageUrl" type="text" class="form-control" id="imageUrl" aria-describedby="imageUrlHelp">
+            <div id="imageUrlHelp" class="form-text">L'url de l'image</div>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input formControlName="location" type="text" class="form-control" id="title" aria-describedby="locationHelp">
+            <div id="locationHelp" class="form-text">Le lieu de la prise</div>
+        </div>
+        <button (click)="onSubmit()" type="submit" class="btn btn-primary" [disabled]="snapFaceForm.invalid">Submit</button>
+    </form>
+</div>
+
+<div class="container col-6 mx-auto info">
+    <div class="card mb-3" *ngIf="prochainFaceSnap$ | async as faceSnap ">
+        <img [src]="faceSnap.imageUrl" class="card-img-top" [alt]="faceSnap.title">
+        <div class="card-body">
+            <h5 class="card-title"> {{faceSnap.title}} </h5>
+            <p class="card-text"> {{faceSnap.description}} </p>
+            <p class="card-text"><small class="text-muted">Mise en ligne {{faceSnap.createdDate | date: 'le d MMMM YYYY à HH:mm' }} </small></p>
+            <p class="text-muted">A {{faceSnap.location}} </p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,8 @@
+<div class="card">
+  <h5 class="card-header"> {{faceSnap.title}} </h5>
+  <div class="card-body">
+    <h5 class="card-title"> {{faceSnap.description}} </h5>
+    <p class="card-text">Mise en ligne {{faceSnap.createdDate | date: 'le d MMM YYY à HH:mm'}} <small *ngIf="faceSnap.location" >à {{faceSnap.location}}</small></p>
+    <a (click)="onViewSingle()"class="btn btn-primary">Voir</a>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="col-5 mx-auto">
+  <form [formGroup]="loginForm" >
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input formControlName="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+  </div>
+  <button (click)="onLogin()" type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" >Submit</button>
+</form>
+</div>
+
+<div class="text-center mt-2">
+  <div *ngIf="person$ | async as person ">
+    <h1>🤔</h1>
+    <p  [ngClass]="{'text-success': person.username==='lm@example.com'}">
+      Username:  {{person.username}} 
+      <span *ngIf="person.username==='lm@example.com'" >👌</span> 
+    </p>
+    <p [ngClass]="{'text-success': person.password=='12345'}" > 
+      Password: 
+      <span *ngIf="person.password==='12345'" >👌</span> 
+    </p>
+
+    <h1 class="alert alert-info" *ngIf="person.username==='lm@example.com' && person.password==='12345'">Ohh Yes 😍</h1>
+
+  </div>
+</div>

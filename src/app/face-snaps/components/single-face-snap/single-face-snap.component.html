@@ -1,0 +1,20 @@
+<div class="container col-6 mx-auto info">
+    <div class="card mb-3" *ngIf="faceSnap$ | async as faceSnap " [ngClass]="{'bg-warning': buttonText!=='Oh snap'}">
+        <img [src]="faceSnap.imageUrl" class="card-img-top" [alt]="faceSnap.title">
+        <div class="card-body">
+            <h5 class="card-title"> {{faceSnap.title}} </h5>
+            <p class="card-text"> {{faceSnap.description}} </p>
+            <p class="card-text"><small class="text-muted">Mise en ligne {{faceSnap.createdDate | date: 'le d MMMM YYYY à HH:mm' }} </small></p>
+            <p *ngIf="faceSnap.location" class="text-muted">A {{faceSnap.location}} </p>
+        </div>
+        <p class="text-center">
+            <button (click)="onSnap(faceSnap.id)" class="btn btn-light">{{buttonText}}</button>
+            <small>💝 {{faceSnap.snaps}} </small>
+        </p>
+        <div class="text-center">
+            <button class="m-2 btn btn-info">Editer</button>
+            <a routerLink="/facesnaps"class="m-2 btn btn-warning">back</a>
+        </div>
+    </div>
+
+</div>
